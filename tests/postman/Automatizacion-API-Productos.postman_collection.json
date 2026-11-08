@@ -1,0 +1,239 @@
+{
+  "info": {
+    "_postman_id": "22f0c243-ba49-4ecf-a6e5-22ae90821090",
+    "name": "Automatizacion API - Productos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42539947"
+  },
+  "item": [
+    {
+      "name": "01 - Consultar productos",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"La API responde con estado 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"La respuesta contiene una lista de productos\", function () {\r",
+              "    pm.expect(pm.response.json()).to.be.an(\"array\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "02 - Registrar producto.",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"El producto se registra correctamente\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"La respuesta confirma el registro\", function () {\r",
+              "    pm.expect(response.message).to.eql(\"Product created successfully\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"El producto contiene los datos correctos\", function () {\r",
+              "    pm.expect(response.product.name).to.eql(\"Hamburguesa especial\");\r",
+              "    pm.expect(response.product.price).to.eql(35000);\r",
+              "    pm.expect(response.product).to.have.property(\"id\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Hamburguesa especial\",\r\n    \"description\": \"Hamburguesa con doble carne y queso\",\r\n    \"price\": 35000,\r\n    \"category\": \"Comidas rápidas\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Validar producto sin nombre",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"La API rechaza el registro sin nombre\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"La respuesta muestra el mensaje de validación\", function () {\r",
+              "    pm.expect(pm.response.json().message)\r",
+              "        .to.eql(\"Product name is required\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"description\": \"Producto sin nombre\",\r\n    \"price\": 15000,\r\n    \"category\": \"Comidas rápidas\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "04 - Consultar producto por ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"La consulta responde con estado 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"El producto consultado tiene los datos esperados\", function () {\r",
+              "    const product = pm.response.json();\r",
+              "\r",
+              "    pm.expect(product).to.have.property(\"id\", 1);\r",
+              "    pm.expect(product).to.have.property(\"name\");\r",
+              "    pm.expect(product).to.have.property(\"price\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "05 - Consultar producto inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"La API responde con estado 404\", function () {\r",
+              "    pm.response.to.have.status(404);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"La respuesta informa que el producto no existe\", function () {\r",
+              "    pm.expect(pm.response.json().message)\r",
+              "        .to.eql(\"Product not found\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/products/9999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "products",
+            "9999"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

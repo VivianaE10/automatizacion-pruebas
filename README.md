@@ -1,102 +1,268 @@
-# AA1 – Diseño de scripts de prueba automatizados para servicios REST y formularios web
+
+
+# 🧪 Manual de pruebas automatizadas
+### AA1 – Diseño de scripts de prueba automatizados para servicios REST y formularios web
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-24-green?logo=node.js" alt="Node.js">
+  <img src="https://img.shields.io/badge/Express-API-black?logo=express">
+  <img src="https://img.shields.io/badge/Selenium-Pruebas%20web-brightgreen?logo=selenium">
+  <img src="https://img.shields.io/badge/Postman-API-orange?logo=postman">
+  <img src="https://img.shields.io/badge/Newman-Automatización-blue" alt="Newman">
+</p>
 
 ## 1. Introducción
 
-La automatización de pruebas de software permite verificar el correcto funcionamiento de una aplicación mediante la ejecución de scripts que validan sus funcionalidades de manera sistemática y repetible. Este proceso contribuye a identificar errores oportunamente, reducir las tareas de validación manual y mejorar la calidad del software.
+El presente proyecto tiene como finalidad diseñar y ejecutar scripts de pruebas automatizadas para un formulario web y un servicio REST. Para ello, se desarrolló una aplicación de registro de productos que permite comprobar el funcionamiento de sus principales operaciones y validar diferentes escenarios.
 
-En esta actividad se plantea el diseño de pruebas automatizadas para un sistema de registro y gestión de productos, compuesto por un formulario web y una API REST. Para ello, se utilizarán herramientas como Selenium, Postman y Newman, con el propósito de validar el comportamiento de las funcionalidades, comprobar las respuestas del servicio y documentar los resultados obtenidos.
-
-El desarrollo permitirá aplicar conceptos de automatización de pruebas funcionales, diseño de casos de prueba y documentación técnica en un entorno práctico.
+Se utilizaron Selenium para automatizar las pruebas del formulario web y Postman para diseñar y ejecutar pruebas de la API REST. Adicionalmente, se empleó Newman para ejecutar la colección de Postman desde la terminal.
 
 ## 2. Objetivos
 
-### 2.1 Objetivo general
+**Objetivo general**
 
-Diseñar e implementar pruebas automatizadas para validar las funcionalidades de un formulario web y los servicios de una API REST, utilizando herramientas de automatización que permitan comprobar el comportamiento del sistema y contribuir a la calidad del software.
+Diseñar y ejecutar pruebas automatizadas para verificar el funcionamiento de un formulario web y una API REST.
 
-### 2.2 Objetivos específicos
+**Objetivos específicos**
 
-- Identificar las funcionalidades principales del sistema de registro y gestión de productos que requieren validación.
-- Diseñar casos de prueba para verificar el ingreso de información en un formulario web y el funcionamiento de los servicios REST.
-- Utilizar herramientas de automatización para estructurar y ejecutar pruebas funcionales.
-- Documentar el procedimiento realizado y registrar evidencias de los resultados obtenidos.
-- Analizar la utilidad de la automatización de pruebas en la detección temprana de errores y el aseguramiento de la calidad del software.
+- Implementar un formulario web para registrar productos.
+- Desarrollar una API REST para crear y consultar productos.
+- Diseñar pruebas automatizadas para validar el formulario mediante Selenium.
+- Crear una colección de pruebas para la API utilizando Postman.
+- Ejecutar las pruebas de la API mediante Newman.
+- Documentar el proceso y los resultados obtenidos.
 
-## 3. Descripción del proyecto
+## 3. Tecnologías y herramientas
 
-El proyecto consiste en el desarrollo de un sistema sencillo para el registro y consulta de productos, compuesto por un formulario web y una API REST que permite gestionar la información.
-
-El sistema permitirá ingresar los datos básicos de un producto, como nombre, descripción, precio y categoría. A través de la API REST se podrán realizar operaciones de registro y consulta, facilitando la validación de los datos y las respuestas del servicio.
-
-Para verificar el funcionamiento de la aplicación se diseñarán pruebas funcionales automatizadas en dos componentes:
-
-- **Formulario web:** se comprobará el ingreso de información, la validación de campos obligatorios y el envío correcto de los datos mediante Selenium.
-- **API REST:** se verificarán las solicitudes de registro y consulta de productos, los códigos de respuesta HTTP y el contenido devuelto por el servicio mediante Postman.
-
-Las pruebas de la API también se ejecutarán desde la terminal utilizando Newman, con el propósito de comprobar que los scripts automatizados funcionan correctamente fuera de la interfaz gráfica de Postman.
-
-### 3.1 Alcance del proyecto
-
-El desarrollo se centrará en las siguientes funcionalidades:
-
-1. Visualizar el formulario de registro de productos.
-2. Validar los campos obligatorios del formulario.
-3. Registrar productos mediante una solicitud HTTP POST.
-4. Consultar los productos registrados mediante una solicitud HTTP GET.
-5. Verificar las respuestas correctas y los posibles errores.
-6. Ejecutar y documentar las pruebas automatizadas.
-
-## 4. Herramientas y tecnologías utilizadas
-
-Para el desarrollo del proyecto y la ejecución de las pruebas automatizadas se utilizarán las siguientes herramientas y tecnologías:
-
-| Herramienta | Aplicación en el proyecto |
+| Herramienta | Aplicación |
 |---|---|
-| Node.js | Entorno de ejecución para desarrollar la API REST. |
-| JavaScript | Lenguaje utilizado para implementar la lógica del sistema y los scripts de prueba. |
-| HTML5 | Estructura del formulario web de registro de productos. |
-| CSS3 | Presentación visual y estilos del formulario. |
-| Selenium | Automatización de las interacciones y validaciones del formulario web. |
-| Postman | Diseño y ejecución de pruebas para los servicios de la API REST. |
-| Newman | Ejecución de colecciones de Postman desde la terminal. |
-| Cursor | Editor de código utilizado para desarrollar y organizar el proyecto. |
-| Git y GitHub | Control de versiones y almacenamiento del código fuente. |
+| Node.js 24 | Entorno de ejecución |
+| Express.js | Desarrollo de la API REST |
+| HTML, CSS y JavaScript | Formulario web |
+| Python 3 | Ejecución de pruebas |
+| Selenium | Automatización del formulario |
+| Postman | Pruebas de servicios REST |
+| Newman | Ejecución automatizada desde terminal |
+| Git y GitHub | Control de versiones |
 
-### 4.1 Justificación de las herramientas
+## 4. Estructura del proyecto
 
-La selección de estas herramientas permite abordar las pruebas desde dos perspectivas complementarias: la validación de la interfaz web y la comprobación de los servicios REST.
+```text
+automatizacion-pruebas/
+│
+├── backend/
+│   └── server.js
+│
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── app.js
+│
+├── tests/
+│   ├── selenium/
+│   │   └── test_formulario.py
+│   │
+│   └── postman/
+│       └── Automatizacion-API-Productos.postman_collection.json
+│
+├── evidencias/
+│   ├── aa1/
+│   └── aa2/
+│
+├── documentacion/
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
-Selenium permite automatizar las acciones que realizaría un usuario en el formulario, mientras que Postman facilita la creación de solicitudes y la validación de las respuestas de la API. Por su parte, Newman permite ejecutar las colecciones de pruebas desde la terminal, facilitando su repetición y documentación.
+### Evidencia de la estructura
 
-## 5. Diseño de casos de prueba
+![Estructura del proyecto](evidencias/aa1/AA1-01-estructura-proyecto.png)
 
-Para validar el funcionamiento del sistema de registro y gestión de productos se establecen diferentes escenarios de prueba funcionales. Estos permitirán comprobar tanto el comportamiento del formulario web como las respuestas de los servicios de la API REST.
+## 5. Descripción de la aplicación
 
-Las pruebas contemplan escenarios positivos, en los que se espera que las operaciones se realicen correctamente, y escenarios negativos, en los que se verifica que el sistema identifique y controle los datos incorrectos o incompletos.
+Se desarrolló una aplicación para el registro y consulta de productos, compuesta por un formulario web y una API REST.
 
-### 5.1 Pruebas del formulario web
+**Formulario web**
 
-| Código | Caso de prueba | Datos o acción | Resultado esperado |
+Permite ingresar el nombre, descripción, precio y categoría de un producto. Incluye validaciones para evitar registros sin nombre o con precios iguales o inferiores a cero. Cuando el registro es exitoso, muestra un mensaje de confirmación y actualiza la lista de productos.
+
+**API REST**
+
+Desarrollada con Express.js, permite registrar productos y consultar la información mediante solicitudes HTTP.
+
+Los datos se almacenan temporalmente en memoria durante la ejecución del servidor; por lo tanto, se reinician cuando este se detiene.
+
+## 6. Servicios REST implementados
+
+Dirección base:
+
+`http://localhost:3000/api/products`
+
+| Método | Endpoint | Funcionalidad | Respuesta |
 |---|---|---|---|
-| FW-01 | Registro exitoso | Ingresar todos los campos correctamente. | El producto se registra y aparece un mensaje de confirmación. |
-| FW-02 | Campo obligatorio vacío | Dejar vacío el nombre del producto. | El formulario impide el envío y muestra una validación. |
-| FW-03 | Precio inválido | Ingresar un precio negativo. | El formulario rechaza el valor ingresado. |
+| GET | `/api/products` | Consultar todos los productos | 200 |
+| POST | `/api/products` | Registrar un producto | 201 |
+| GET | `/api/products/:id` | Consultar producto por ID | 200 |
+| POST | `/api/products` | Validar registro sin nombre | 400 |
+| GET | `/api/products/9999` | Consultar producto inexistente | 404 |
 
-### 5.2 Pruebas de la API REST
+**Ejemplo de solicitud para registrar un producto:**
 
-| Código | Caso de prueba | Solicitud | Resultado esperado |
-|---|---|---|---|
-| API-01 | Registro exitoso | POST /api/products | Código HTTP 201 y producto creado. |
-| API-02 | Consulta de productos | GET /api/products | Código HTTP 200 y listado de productos. |
-| API-03 | Registro sin nombre | POST /api/products sin el campo nombre. | Código HTTP 400 y mensaje de validación. |
-| API-04 | Consulta de producto inexistente | GET /api/products/9999 | Código HTTP 404 y mensaje de recurso no encontrado. |
+```json
+{
+  "name": "Hamburguesa especial",
+  "description": "Hamburguesa con doble carne y queso",
+  "price": 35000,
+  "category": "Comidas rápidas"
+}
+```
 
-### 5.3 Criterios de aceptación
+## 7. Flujo de trabajo y ejecución
 
-Se considerará que las pruebas cumplen su propósito cuando:
+### 7.1. Instalación de dependencias
 
-- Los registros válidos sean procesados correctamente.
-- Los campos obligatorios sean validados.
-- Los datos incorrectos sean rechazados.
-- Los servicios REST respondan con los códigos HTTP correspondientes.
-- Los resultados obtenidos coincidan con los resultados esperados definidos en cada caso de prueba.
+Se requiere tener instalado Node.js, Python y Google Chrome.
+
+Desde la terminal, ubicarse en la carpeta del proyecto y ejecutar:
+
+```bash
+npm install
+```
+
+Instalar Selenium:
+
+```bash
+python -m pip install selenium
+```
+
+### 7.2. Iniciar el servidor
+
+Ejecutar el siguiente comando:
+
+```bash
+npm start
+```
+
+El servidor estará disponible en:
+
+`http://localhost:3000`
+
+### 7.3. Verificar el formulario web
+
+Abrir en el navegador la dirección del servidor. Desde el formulario se puede registrar un producto y comprobar que aparezca en la lista.
+
+### 7.4. Ejecutar las pruebas con Selenium
+
+Con el servidor activo, abrir una segunda terminal y ejecutar:
+
+```bash
+python -m unittest tests/selenium/test_formulario.py -v
+```
+
+Se implementaron tres casos de prueba:
+
+| Caso | Validación |
+|---|---|
+| 1 | Verificar que el formulario cargue correctamente. |
+| 2 | Comprobar que el nombre sea obligatorio. |
+| 3 | Registrar un producto y verificar que aparezca en la lista. |
+
+**Evidencia de ejecución de Selenium:**
+
+![Pruebas automatizadas con Selenium](evidencias/aa1/AA1-08-ejecucion-pruebas-selenium.png)
+
+**Resultado:** 3 pruebas ejecutadas correctamente.
+
+### 7.5. Ejecutar las pruebas con Postman
+
+Se creó la colección `Automatizacion API - Productos`, que contiene cinco solicitudes:
+
+1. Consultar todos los productos.
+2. Registrar un producto.
+3. Validar el registro sin nombre.
+4. Consultar un producto por ID.
+5. Consultar un producto inexistente.
+
+Cada solicitud incluye scripts de prueba para verificar los códigos de respuesta HTTP, los mensajes y los datos devueltos por la API.
+
+**Evidencias de ejecución:**
+
+**Consulta de productos**
+
+![Consulta de productos](evidencias/aa1/AA1-02-api-consulta-inicial.png)
+
+**Registro de producto**
+
+![Registro de producto](evidencias/aa1/AA1-03-registro-producto.png)
+
+**Validación de nombre obligatorio**
+
+![Validación de nombre](evidencias/aa1/AA1-04-validacion-nombre-obligatorio.png)
+
+**Consulta por ID**
+
+![Consulta por ID](evidencias/aa1/AA1-05-consulta-producto-id.png)
+
+**Consulta de producto inexistente**
+
+![Producto inexistente](evidencias/aa1/AA1-06-consulta-producto-inexistente.png)
+
+**Formulario web de registro**
+
+![Formulario de registro](evidencias/aa1/AA1-07-formulario-registro-producto.png)
+
+### 7.6. Ejecución de la colección con Newman
+
+Newman permite ejecutar desde la terminal la colección creada en Postman.
+
+Comando:
+
+```bash
+npx newman run tests/postman/Automatizacion-API-Productos.postman_collection.json
+```
+
+El servidor debe permanecer activo durante la ejecución.
+
+## 8. Resultados de las pruebas
+
+La ejecución de la colección mediante Newman presentó los siguientes resultados:
+
+| Indicador | Resultado |
+|---|---:|
+| Solicitudes ejecutadas | 5 |
+| Scripts de prueba | 5 |
+| Aserciones realizadas | 11 |
+| Aserciones fallidas | 0 |
+| Estado | Aprobado |
+
+Todas las solicitudes y aserciones finalizaron correctamente.
+
+## 9. Reflexión sobre la utilidad de las pruebas automatizadas
+
+Las pruebas automatizadas permiten verificar el funcionamiento de una aplicación de manera repetible y reducir las validaciones manuales. Durante el desarrollo se comprobó que Selenium facilita la interacción automática con los elementos de un formulario web, mientras que Postman permite validar los servicios REST y sus respuestas.
+
+Por su parte, Newman facilita la ejecución de colecciones desde la terminal, permitiendo repetir las pruebas y detectar posibles errores después de realizar cambios en el código.
+
+## 10. Conclusiones
+
+Se implementó una aplicación de registro de productos y se diseñaron pruebas automatizadas para validar el formulario web y los servicios REST.
+
+Las pruebas con Selenium finalizaron con tres casos aprobados. Por su parte, la colección ejecutada con Newman completó cinco solicitudes y once aserciones sin fallos.
+
+El desarrollo permitió aplicar herramientas de automatización y comprender su importancia para verificar la funcionalidad y calidad de una aplicación de software.
+
+## 11. Repositorio del proyecto
+
+El código fuente, los scripts automatizados, la colección de Postman y las evidencias se encuentran disponibles en GitHub:
+
+**[Ver repositorio – Automatización de pruebas](https://github.com/VivianaE10/automatizacion-pruebas)**
+
+---
+
+<p align="center">
+  **AA1 – Diseño de scripts de prueba automatizados**
+</p>
+
